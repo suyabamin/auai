@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* base.css – Reset rules, typography setup, scrollbars, and key animations */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline-color: var(--primary);
+}
+
+html {
+  /* Fluid base font: 14px on small screens → 16px on large */
+  font-size: clamp(13px, 1.5vw, 16px);
+  scroll-behavior: smooth;
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  font-size: 1rem;
+}
+
+/* -------------------------------------------------- */
+/* Keyframe Animations                                */
+/* -------------------------------------------------- */
+
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 0 0 var(--primary-glow); }
+  70%  { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.08); opacity: 0.85; }
+}
+
+@keyframes spinnerRotation {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes floatElement {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* -------------------------------------------------- */
+/* Animation Utility Classes                          */
+/* -------------------------------------------------- */
+
+.anim-pulse      { animation: pulseGlow   2s infinite; }
+.anim-float      { animation: floatElement 4s ease-in-out infinite; }
+.anim-slide-up   { animation: slideInUp   0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.anim-slide-left { animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.anim-fade-in    { animation: fadeIn      0.4s ease forwards; }
+
+/* -------------------------------------------------- */
+/* Focus Accessibility                                */
+/* -------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------- */
+/* Reduced-motion accessibility                       */
+/* -------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

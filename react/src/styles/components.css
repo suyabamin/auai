@@ -1,0 +1,603 @@
+/* components.css – Premium glass UI widgets, responsive cards, and module elements */
+
+/* ================================================== */
+/* Glass Cards                                        */
+/* ================================================== */
+
+.card-glass {
+  background: var(--glass-bg);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover shine effect – desktop only */
+@media (hover: hover) {
+  .card-glass:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  .card-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: 0.75s;
+    pointer-events: none;
+  }
+  .card-glass:hover::before { left: 125%; }
+}
+
+/* Mobile cards: active tap feedback */
+@media (hover: none) {
+  .card-glass:active {
+    transform: scale(0.98);
+    opacity: 0.92;
+  }
+}
+
+/* ================================================== */
+/* Buttons                                            */
+/* ================================================== */
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  border-radius: var(--border-radius-sm);
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: var(--transition-fast);
+  backdrop-filter: blur(5px);
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  /* Minimum tap target 44px */
+  min-height: 40px;
+}
+.btn-glass:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px var(--primary-glow);
+  transform: translateY(-2px);
+}
+.btn-glass:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 15px var(--primary-glow);
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 6px 20px var(--primary-glow);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================================================== */
+/* Input Fields                                       */
+/* ================================================== */
+
+.input-glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  border-radius: var(--border-radius-sm);
+  padding: 0.6rem 1rem;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+  width: 100%;
+  min-height: 42px;
+}
+.input-glass:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+.input-glass::placeholder { color: var(--text-muted); }
+
+/* ================================================== */
+/* Accent Color Dots                                  */
+/* ================================================== */
+
+.color-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+.color-dot:hover  { transform: scale(1.2); }
+.color-dot.active { border-color: var(--text-primary); }
+
+/* ================================================== */
+/* Badges                                             */
+/* ================================================== */
+
+.badge {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 50px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.badge-primary { background: var(--primary-glow);                    color: var(--primary); }
+.badge-success { background: hsla(145, 80%, 40%, 0.15);              color: var(--success); }
+.badge-warning { background: hsla(38, 95%, 50%, 0.15);               color: var(--warning); }
+.badge-danger  { background: hsla(355, 85%, 55%, 0.15);              color: var(--danger);  }
+
+/* ================================================== */
+/* Notification badge dot                             */
+/* ================================================== */
+
+.topbar-action-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+.topbar-action-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+.topbar-action-btn .badge-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--danger);
+  border-radius: 50%;
+  border: 2px solid var(--glass-bg);
+}
+
+/* ================================================== */
+/* Launcher Grid (Dashboard quick-access cards)       */
+/* ================================================== */
+
+.launcher-grid {
+  display: grid;
+  /* Mobile: 3 items per row → tablet: 4 → desktop: auto-fill */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: var(--space-md);
+}
+
+.launcher-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.85rem, 2vw, 1.25rem) 0.75rem;
+  border-radius: var(--border-radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+@media (hover: hover) {
+  .launcher-card:hover {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px var(--primary-glow);
+    transform: translateY(-5px);
+  }
+  .launcher-card:hover .launcher-icon {
+    transform: scale(1.15) rotate(5deg);
+  }
+}
+
+@media (hover: none) {
+  .launcher-card:active {
+    background: var(--primary);
+    color: white;
+    transform: scale(0.96);
+  }
+}
+
+.launcher-icon {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 0.4rem;
+  transition: var(--transition-fast);
+}
+.launcher-title {
+  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Scale up on wider screens */
+@media (min-width: 600px) {
+  .launcher-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+}
+@media (min-width: 900px) {
+  .launcher-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+/* ================================================== */
+/* Welcome Widget                                     */
+/* ================================================== */
+
+.welcome-card {
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.45) 0%, rgba(144, 202, 249, 0.2) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+}
+.dark .welcome-card {
+  background: linear-gradient(135deg, rgba(13, 20, 36, 0.8) 0%, rgba(26, 36, 60, 0.6) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.welcome-emoji {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 0.5rem;
+  font-size: clamp(3rem, 7vw, 5rem);
+  opacity: 0.3;
+  pointer-events: none;
+  animation: floatElement 5s ease-in-out infinite;
+}
+
+/* ================================================== */
+/* Clock Widget                                       */
+/* ================================================== */
+
+.widget-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0.5rem;
+}
+.clock-number {
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.clock-date {
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+/* ================================================== */
+/* System Stats Ring Charts                           */
+/* ================================================== */
+
+.system-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  text-align: center;
+  margin-top: var(--space-md);
+}
+.circle-chart {
+  position: relative;
+  width: clamp(64px, 12vw, 90px);
+  height: clamp(64px, 12vw, 90px);
+  margin: 0 auto;
+}
+.circle-chart-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 3.5;
+}
+.circle-progress {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.35s ease;
+}
+.circle-progress.success { stroke: var(--success); }
+.circle-progress.warning { stroke: var(--warning); }
+.circle-progress.danger  { stroke: var(--danger);  }
+.circle-chart-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(0.65rem, 1.5vw, 0.9rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.system-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* ================================================== */
+/* AI Prompt Bar                                      */
+/* ================================================== */
+
+.ai-prompt-bar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.ai-prompt-bar .input-glass {
+  flex: 1;
+}
+
+/* ================================================== */
+/* Widget List Items (todos / notes)                  */
+/* ================================================== */
+
+.widget-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  gap: 0.5rem;
+}
+.widget-list-item:last-child { border-bottom: none; }
+.widget-list-text    { font-size: 0.85rem; color: var(--text-primary); }
+.widget-list-subtext { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ================================================== */
+/* Module Header                                      */
+/* ================================================== */
+
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: clamp(1rem, 3vw, 2rem);
+  animation: slideInUp 0.5s ease;
+}
+.module-title {
+  font-size: clamp(1.15rem, 3vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* ================================================== */
+/* Legacy Chat Container (index.html aiChat section)  */
+/* ================================================== */
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--topbar-height) - 80px);
+  max-width: 860px;
+  margin: 0 auto;
+}
+.chat-messages-modern {
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  background: var(--glass-bg);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--glass-border);
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.msg-wrapper {
+  max-width: 80%;
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px 14px 14px 2px;
+  padding: 10px 14px;
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  line-height: 1.45;
+  animation: slideInUp 0.3s ease;
+  word-break: break-word;
+}
+.msg-wrapper.user {
+  align-self: flex-end;
+  background: var(--primary);
+  color: white;
+  border-radius: 14px 14px 2px 14px;
+  border-color: transparent;
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+.msg-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  opacity: 0.85;
+}
+
+/* ================================================== */
+/* Placeholder Body (stub sections)                   */
+/* ================================================== */
+
+.placeholder-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ================================================== */
+/* Grid span utilities responsive override            */
+/* ================================================== */
+
+/* On tablet: spans > 6 collapse to row */
+@media (max-width: 1024px) {
+  .grid-12 [style*="grid-column: span 8"],
+  .grid-12 [style*="grid-column: span 9"],
+  .grid-12 [style*="grid-column: span 10"],
+  .grid-12 [style*="grid-column: span 12"] {
+    grid-column: 1 / -1;
+  }
+  .grid-12 [style*="grid-column: span 4"],
+  .grid-12 [style*="grid-column: span 5"],
+  .grid-12 [style*="grid-column: span 6"],
+  .grid-12 [style*="grid-column: span 7"] {
+    grid-column: span 6;
+  }
+}
+
+/* On mobile: everything full width */
+@media (max-width: 768px) {
+  .grid-12 [style*="grid-column"] {
+    grid-column: 1 / -1 !important;
+  }
+
+  .module-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .module-header .btn-glass,
+  .module-header .btn-primary {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .chat-container {
+    height: calc(100dvh - var(--topbar-height) - 1.5rem);
+  }
+
+  .welcome-emoji {
+    display: none; /* hide large emoji on small screens to save space */
+  }
+}
+
+@media (max-width: 480px) {
+  .system-stats-grid {
+    gap: 4px;
+  }
+  .launcher-title {
+    font-size: 0.68rem;
+  }
+}
+
+/* ================================================== */
+/* App Footer                                         */
+/* ================================================== */
+
+.app-footer {
+  padding: 0.75rem var(--space-lg);
+  border-top: 1px solid var(--glass-border);
+  font-size: 0.78rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  background: var(--glass-bg);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .app-footer {
+    flex-direction: column;
+    text-align: center;
+    font-size: 0.72rem;
+    padding: 0.5rem;
+  }
+  .app-footer > div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+}
+
+/* ================================================== */
+/* Weather Widget Card – allow search dropdown        */
+/* ================================================== */
+
+.weather-widget-card {
+  overflow: visible !important;
+}
+
